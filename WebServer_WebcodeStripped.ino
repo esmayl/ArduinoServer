@@ -117,18 +117,18 @@ void loop()
   //Show orange light with multicolor LED
   if(lightToggle == 1)
   {
-    digitalWrite(3,HIGH);
-    digitalWrite(2,LOW);
-  }
-  else if(lightToggle == 0)//Turn of multicolor LED
-  {
-    digitalWrite(3,LOW);
-    digitalWrite(2,LOW);  
+    Serial.println(sensorValue);
+    mySwitch.send(CODE_Button1on,24);
+    delay(200);
+    mySwitch.send(CODE_Button1off,24);
+    
   }
 
   int tempValue = digitalRead(tempSensorPin);
 
   int soundValue = digitalRead(4);
+
+  if(lightToggle == 1){soundValue = HIGH;}
 
   if(soundValue == LOW)//Is reversed if HIGH than sensor does not detect sound
   {
